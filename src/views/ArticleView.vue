@@ -28,7 +28,7 @@
               :isTime="true"
               :article="post" :key="index"></ArticleComponent>
             </div>
-            
+          
           </section>
         </div>
         </main>
@@ -92,12 +92,12 @@ import FooterComponent from '@/components/FooterComponent.vue';
     
   },
   mounted(){
-    this.$store.dispatch('GET_ARTICLES')
+  this.$store.dispatch('GET_ARTICLES')
     
   },
   computed: {
-    ARTICLES(){
-      return this.$store.getters.ARTICLES[0]
+   ARTICLES(){
+      return  this.$store.getters.ARTICLES[0]
     },
    
     filteredArticles() {

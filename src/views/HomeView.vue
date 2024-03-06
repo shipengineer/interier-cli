@@ -112,6 +112,7 @@
                 <ArticleComponent v-for="post,index in ARTICLES" class="article" 
               :isTime="true"
               :article="post" :key="index"></ArticleComponent>
+            
             </div>
         </section>
     </main>
@@ -138,7 +139,8 @@ mounted(){
   },
   computed: {
     ARTICLES(){
-      return this.$store.getters.ARTICLES[0]
+        
+      return   this.$store.getters.ARTICLES[0]
     },
 }
 }
