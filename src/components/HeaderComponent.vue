@@ -7,8 +7,6 @@
         <router-link to="/blog">Blog</router-link>
         <router-link to="/market">Market</router-link>
         <router-link to="/article">Article</router-link>
-        
-
     </nav>
 </header>
 </template>
@@ -20,7 +18,7 @@ export default {
   },
   data(){
     return{
-      logoImg:'/Logo.png'
+      logoImg:'/logo.png'
     }
   }
   

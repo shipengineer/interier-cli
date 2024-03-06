@@ -7,9 +7,9 @@
   </template>
   
   <script>
-  import FooterComponent from '@/components/Footer/FooterComponent.vue';
-  import HeaderComponent from '@/components/Header/HeaderComponent.vue';
-  import ProductDetails from '@/components/ProductDetails/ProductDetails.vue'
+  import FooterComponent from '@/components/FooterComponent.vue';
+  import HeaderComponent from '@/components/HeaderComponent.vue';
+  import ProductDetails from '@/components/ProductDetails.vue'
   
   export default {
     name: 'BlogView',

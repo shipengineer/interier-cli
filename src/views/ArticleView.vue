@@ -7,89 +7,53 @@
             src="@/assets/article/head.png"
             class="bookmark__img"
           />
-         
         </div>
-        <section class="big-article">
-          <div class="content">
-            <p class="content__name">let's get solution for building construction work</p>
-            <div class="img-container">
-            <img src="@/assets/article/1.png"  class="img-container__img">
-            <time class="img-container__date">26 December, 2022</time>
-            <p class="img-container__tags">Interior / Home / Decore</p>
-          </div>
-            <p class="content__text">Lorem ipsum dolor sit amet, adipiscing Aliquam eu sem vitae turpmaximus.posuere in.Contrary to popular belief.There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injecthumour, or randomised words which don't look even slightly believable.
-            Embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary.</p>
-          <aside class="cites">
+        <div class="section">
+        <BigArticle :article="ARTICLES[6]"/>
+        <aside class="cites">
               <div class="cite">
                   <p class="cite__number">„</p>
                   <p class="cite__description">The details are not the details. 
                   They make the design.</p>
               </div>
           </aside>
-            <p class="content__name">design sprints are great</p>
-            <p class="content__text">Lorem ipsum dolor sit amet, adipiscing Aliquam eu sem vitae turpmaximus.posuere in.Contrary to popular belief.There are many variations of passages of Lorem Ipsum available, but the majority have suffered.</p>
-            <ol class="list">
-              <li class="list__element">Contrary to popular belief.There are many variations of passages of Lorem Ipsum available, but the majority have suffered.</li>
-              <li class="list__element">Contrary to popular belief.There are many variations of passages of Lorem Ipsum available, but the majority have suffered.</li>
-              <li class="list__element">Contrary to popular belief.There are many variations of passages of Lorem Ipsum available, but the majority have suffered.</li>
-            </ol>
-            <img src="@/assets/article/1.png"  class="content__img">
-            <p class="content__text">Lorem ipsum dolor sit amet, adipiscing Aliquam eu sem vitae turpmaximus.posuere in.Contrary to popular belief.There are many variations of passages of Lorem Ipsum available, but the majority have suffered.</p>
-
-          </div>
+          <BigArticle :article="ARTICLES[7]"/>
           <div class="tags">
             <span class="tags__name">Tags</span>
-            <span v-for="tags,index in articles[0].tag" class="tags__element" @click="addFilter" :key="index">{{tags}}</span>
+            <span v-for="tags,index in ARTICLES[0].tag" class="tags__element" @click="addFilter" :key="index">{{tags}}</span>
           </div>
           <section class="articles">
             <div class="palette">
-              <div v-for="article,index in filteredArticles" class="article" :id="article.id" :key="index">
-                <img :src="article.img" class="article__img" />
-                <span class="article__tag">{{article.tag[0]}}</span>
-                <h2 class="article__name">{{article.name}}</h2>
-                <time class="article__date"
-                  >{{getDateToString(article.date)}}</time
-                >
-                <a class="article__link">
-                  <svg
-                    width="9"
-                    height="16"
-                    viewBox="0 0 9 16"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M1.77144 14.9527L7.71429 8.267L1.77144 1.58128"
-                      stroke="#292F36"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </a>
-              </div>
+              <ArticleComponent v-for="post,index in filteredArticles" class="article" 
+              :isTime="true"
+              :article="post" :key="index"></ArticleComponent>
             </div>
             
           </section>
-        </section>
+        </div>
         </main>
       <FooterComponent/>
     </div>
   </template>
   
   <script>
-  import FooterComponent from '@/components/Footer/FooterComponent.vue';
-  import HeaderComponent from '@/components/Header/HeaderComponent.vue';
+  import ArticleComponent from '@/components/ArticleComponent.vue';
+import BigArticle from '@/components/BigArticle.vue';
+import FooterComponent from '@/components/FooterComponent.vue';
+  import HeaderComponent from '@/components/HeaderComponent.vue';
   
   
   export default {
     name: 'ArticleView',
     components: {
       HeaderComponent,
-      FooterComponent
+      FooterComponent,
+      ArticleComponent,
+      BigArticle,
   },
   data(){
     return{
+      
         filters: [],
         month: [
       'December',
@@ -105,70 +69,7 @@
       'November',
       'January',
     ],
-    articles: [
-      {
-        id: 0,
-        img: './news-image/1.png',
-        name: 'let’s get solution for building construction work',
-        date: 1735171200,
-        tag: [
-          "kitchen",
-          "bedroom",
-          "building",
-          "architecture",
-          "kitchen design",
-          "bedroom",
-        ],
-      },
-      {
-        id: 1,
-        img: './news-image/2.png',
-        name: ' low cost latest invented interior designing ideas.',
-        date: 1734825600,
-        tag: [
-          "kitchen",
-          "bedroom",
-         
-          
-          "kitchen design",
-          "bedroom",
-        ],
-      },
-      {
-        id: 2,
-        img: './news-image/3.png',
-        name: 'best for any office & business interior solution',
-        date: 1735171200,
-        tag: 'interior design',
-      },
-      {
-        id: 3,
-        img: './news-image/4.png',
-        name: 'let’s get solution for building construction work',
-        date: 1735084800,
-        tag: [
-          "kitchen",
-          "bedroom",
-          "building",
-          "architecture",
-          
-        ],
-      },
-      {
-        id: 4,
-        img: './news-image/5.png',
-        name: ' low cost latest invented interior designing ideas.',
-        date: 1734825600,
-        tag: 'living design',
-      },
-      {
-        id: 5,
-        img: './news-image/6.png',
-        name: 'best for any office & business interior solution',
-        date: 1735084800,
-        tag: 'interior design',
-      },
-    ],
+   
   }},
     methods: {
   getDateToString(timestamp) {
@@ -190,12 +91,21 @@
     },
     
   },
+  mounted(){
+    this.$store.dispatch('GET_ARTICLES')
+    
+  },
   computed: {
+    ARTICLES(){
+      return this.$store.getters.ARTICLES[0]
+    },
+   
     filteredArticles() {
+      console.log(this.ARTICLES)
       if (this.filters.length === 0) {
-        return this.articles;
+        return this.ARTICLES;
       }
-      return this.articles.filter((elem) => {
+      return this.ARTICLES.filter((elem) => {
         let find = false;
         this.filters.forEach((tag) => {
           if (elem.tag.includes(tag)) {
@@ -214,12 +124,16 @@
 
   </script>
   <style lang="scss">
+ 
+  .articles{
+    margin-top:25px
+  }
+  @import url('@/assets/scss-modules/articles.scss');
   
   @import url('@/assets/scss-modules/_head.scss');
   @import url('@/assets/scss-modules/_latest-post.scss');
   @import url('@/assets/scss-modules/_bookmarks.scss');
   @import url('@/assets/scss-modules/_pages.scss');
-  @import url('@/assets/scss-modules/articles.scss');
   @import url('@/assets/styles/_article.scss');
   </style>
   

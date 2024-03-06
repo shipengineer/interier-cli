@@ -20,9 +20,9 @@
   </template>
   
   <script>
-  import ProjectComponent from '@/components/Project/ProjectComponent.vue';
-  import FooterComponent from '@/components/Footer/FooterComponent.vue';
-  import HeaderComponent from '@/components/Header/HeaderComponent.vue';
+  import ProjectComponent from '@/components/ProjectComponent.vue';
+  import FooterComponent from '@/components/FooterComponent.vue';
+  import HeaderComponent from '@/components/HeaderComponent.vue';
   
   
   export default {
@@ -166,13 +166,13 @@
       },
     ],
   }},
-   
   }
 
   </script>
   <style lang="scss" scoped>
   
   @import url('@/assets/scss-modules/_head.scss');
+  @import url('@/assets/scss-modules/articles.scss');
   @import url('@/assets/scss-modules/_bookmarks.scss');
  .palette{
   width: 1200px;
@@ -182,12 +182,6 @@
   height: 3200px;
   flex-wrap: wrap;
   gap: 35px;
-
-
-
  }
-
-
-
   </style>
   

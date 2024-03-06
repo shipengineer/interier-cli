@@ -109,49 +109,9 @@
                 </h3>
             </div>
             <div class="palette">
-                <div class="article">
-
-                    <img src="/news-image/1.png" alt="" class="article__img" />
-                    <span class="article__tag">kitchan design</span>
-                    <h2 class="article__name">
-                        let’s get solution for building construction work
-                    </h2>
-                    <time class="article__date">26 December,2022</time> 
-                     <a class="article__link">
-                        <svg width="9" height="16" viewBox="0 0 9 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1.77144 14.9527L7.71429 8.267L1.77144 1.58128" stroke="#292F36" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                          </svg>
-                    </a>
-                </div>
-                <div class="article">
-                    <img src="/news-image/2.png" alt="" class="article__img" />
-                    <span class="article__tag">living design</span>
-
-                    <h2 class="article__name">
-                        low cost latest invented interior designing
-ideas.
-                    </h2>
-                    <time class="article__date">22 December,2022</time> 
-                     <a class="article__link">
-                        <svg width="9" height="16" viewBox="0 0 9 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1.77144 14.9527L7.71429 8.267L1.77144 1.58128" stroke="#292F36" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                          </svg>
-                    </a>
-                </div>
-                <div class="article">
-                    <img src="/news-image/3.png" alt="" class="article__img" />
-                    <span class="article__tag">interior design</span>
-                    <h2 class="article__name">
-                        best for any office & business interior 
-                        solution
-                    </h2>
-                    <time class="article__date">25 December,2022</time> 
-                     <a class="article__link">
-                        <svg width="9" height="16" viewBox="0 0 9 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1.77144 14.9527L7.71429 8.267L1.77144 1.58128" stroke="#292F36" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                          </svg>
-                    </a>
-                </div>
+                <ArticleComponent v-for="post,index in ARTICLES" class="article" 
+              :isTime="true"
+              :article="post" :key="index"></ArticleComponent>
             </div>
         </section>
     </main>
@@ -160,15 +120,26 @@ ideas.
 </template>
 
 <script>
-import FooterComponent from '@/components/Footer/FooterComponent.vue';
-import HeaderComponent from '@/components/Header/HeaderComponent.vue';
+import ArticleComponent from '@/components/ArticleComponent.vue';
+import FooterComponent from '@/components/FooterComponent.vue';
+import HeaderComponent from '@/components/HeaderComponent.vue';
 
 
 export default {
   name: 'HomeView',
   components: {
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    ArticleComponent,
+},
+mounted(){
+    this.$store.dispatch('GET_ARTICLES')
+    
+  },
+  computed: {
+    ARTICLES(){
+      return this.$store.getters.ARTICLES[0]
+    },
 }
 }
 </script>
@@ -194,7 +165,7 @@ export default {
 }
 
 @import url('@/assets/scss-modules/_head.scss');
-    @import url('@/assets/scss-modules/articles.scss');
+  @import url('@/assets/scss-modules/articles.scss');
     @import url('@/assets/styles/_index.scss');
 
 </style>

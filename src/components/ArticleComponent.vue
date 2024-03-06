@@ -1,39 +1,68 @@
 <template>
   <div  class="article" :id="article.id" :key="article.id">
-      <img :src="article.img" class="article__img" />
+      <img :src="article.img"
+      class="article__img" />
       <span class="article__tag">{{article.tag[0]}}</span>
       <h2 class="article__name">{{article.name}}</h2>
       <time v-if="isTime" class="article__date"
         >{{getDateToString(article.date)}}</time
       >
-      <a class="article__link">
-        <svg
-          width="9"
-          height="16"
-          viewBox="0 0 9 16"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M1.77144 14.9527L7.71429 8.267L1.77144 1.58128"
-            stroke="#292F36"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
-      </a>
+      <aLink  :link="home" />
     </div>
   </template>
 
 <script>
+import aLink from './UI/ALink.vue';
     export default {
 
       name: 'ArticleComponent',
       props:{
         isTime:Boolean,
         article:Object
+      },
+      components:{
+        aLink
+      },
+      data(){
+        return{
+          home:'/home',
+          filters: [],
+        month: [
+      'December',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'January',
+    ],
+        }
+      },
+      methods:{
+  getDateToString(timestamp) {
+    const date = new Date(timestamp * 1000);
+    return `${date.getDate()} ${
+      this.month[date.getMonth()]
+    } ${date.getFullYear()}`;
+    },
+    addFilter(e) {
+      if (this.filters.includes(e.target.textContent)) {
+        this.filters = this.filters.filter(
+          (elem) => elem != e.target.textContent
+        );
+        e.target.classList.toggle("selected");
+      } else {
+        this.filters.push(e.target.textContent);
+        e.target.classList.toggle("selected");
       }
+    },
+    
+  },
       
     }
     </script>
@@ -45,15 +74,17 @@
       padding: 21px;
       border: 1px #e7e7e7 solid;
       border-radius: 62px;
-      &:nth-child(2) {
+      &:hover {
         background-color: var(--achivments-background-color);
-        .article__link {
+        .link {
           background-color: #fff;
         }
       }
       .article__img {
         border-top-left-radius: 45px;
         border-top-right-radius: 45px;
+        width: 100%;
+       
       }
       .article__tag {
         position: absolute;

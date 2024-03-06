@@ -59,18 +59,7 @@
         -webkit-box-orient: vertical;
         overflow: hidden;
       }
-      .article__link {
-        position: absolute;
-        bottom: 37px;
-        right: 21px;
-        width: 52px;
-        height: 52px;
-        line-height: 60px;
-        text-align: center;
-        border-radius: 50%;
-        background-color: var(--link-color);
-        cursor: pointer;
-      }
+      
       .article__date {
         position: absolute;
         height: 33px;
