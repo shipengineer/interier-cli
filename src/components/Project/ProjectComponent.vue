@@ -1,0 +1,108 @@
+<template>
+    <div  class="project">
+        <img :src="project.img" class="project__img" />
+        <h2 class="project__name">{{project.name}}</h2>
+        <span class="project__tag">{{project.tag[0]}}</span>
+        <time v-if="isTime" class="project__date"
+          >{{getDateToString(project.date)}}</time
+        >
+        <a class="project__link">
+          <svg
+            width="9"
+            height="16"
+            viewBox="0 0 9 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M1.77144 14.9527L7.71429 8.267L1.77144 1.58128"
+              stroke="#292F36"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </a>
+      </div>
+    </template>
+  
+  <script>
+      export default {
+  
+        name: 'ProjectComponent',
+        props:{
+          isTime:Boolean,
+          project:Object,
+        }
+        
+      }
+      </script>
+      <style lang="scss" scoped>
+      .project {
+        position:relative;
+        width:50%;
+        box-sizing: border-box;
+        min-height:610px;
+        max-height:920px;
+        
+        &:hover {
+          background-color: var(--achivments-background-color);
+          .project__link {
+            background-color: #fff;
+          }
+        }
+      
+        .project__tag {
+          
+          bottom: 0px;
+          left: 41px;
+          width: 118px;
+          height: 29px;
+          background-color: #fff;
+          border-radius: 8px;
+          border-bottom-left-radius: 0px;
+  
+          font-family: 'Jost';
+          text-align: center;
+          font-size: 16px;
+          line-height: 29px;
+          letter-spacing: 0.01em;
+          text-transform: capitalize;
+          color: #4d5053;
+        }
+        .project__name {
+          margin-top:22px;
+          width: 305px;
+          height: 100px;
+          font-family: 'DM Serif Display';
+          text-transform: capitalize;
+          font-size: 25px;
+          line-height: 1.25;
+          letter-spacing: 0.02em;
+          color: #292f36;
+  
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+        .project__link {
+          position: absolute;
+          bottom: 0px;
+          right: 21px;
+          width: 52px;
+          height: 52px;
+          line-height: 60px;
+          text-align: center;
+          border-radius: 50%;
+          background-color: var(--link-color);
+          cursor: pointer;
+        }
+        .project__date {
+          position: absolute;
+          height: 33px;
+          bottom: 37px;
+        }
+      }
+  
+      </style>
