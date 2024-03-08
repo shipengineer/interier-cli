@@ -5,6 +5,7 @@ import BlogView from '../views/BlogView.vue';
 import ArticleView from '../views/ArticleView.vue';
 import MarketView from '../views/MarketView.vue';
 import ProjectsView from '../views/ProjectsView.vue';
+import BigProjectView from '@/views/BigProjectView.vue';
 Vue.use(VueRouter);
 
 const routes = [
@@ -24,6 +25,11 @@ const routes = [
     path: '/projects',
     name: 'projects',
     component: ProjectsView,
+  },
+  {
+    path: '/projectDetails',
+    name: 'bigProject',
+    component: BigProjectView,
   },
 ];
 

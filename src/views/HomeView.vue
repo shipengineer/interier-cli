@@ -109,7 +109,7 @@
                 </h3>
             </div>
             <div class="palette">
-                <ArticleComponent v-for="post,index in ARTICLES" class="article" 
+                <ArticleComponent v-for="post,index in ARTICLES.slice(0,6)" class="article" 
               :isTime="true"
               :article="post" :key="index"></ArticleComponent>
             

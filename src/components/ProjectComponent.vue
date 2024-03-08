@@ -29,11 +29,9 @@ import ALink from './UI/ALink.vue';
       <style lang="scss" scoped>
       .project {
         position:relative;
-        width:50%;
-        box-sizing: border-box;
+      box-sizing: border-box;
         min-height:610px;
-        max-height:920px;
-        
+        max-height:950px;
         &:hover {
           background-color: var(--achivments-background-color);
           .project__link {
@@ -43,8 +41,6 @@ import ALink from './UI/ALink.vue';
       
         .project__tag {
           
-          bottom: 0px;
-          left: 41px;
           width: 118px;
           height: 29px;
           background-color: #fff;
@@ -54,7 +50,6 @@ import ALink from './UI/ALink.vue';
           font-family: 'Jost';
           text-align: center;
           font-size: 16px;
-          line-height: 29px;
           letter-spacing: 0.01em;
           text-transform: capitalize;
           color: #4d5053;
@@ -62,7 +57,6 @@ import ALink from './UI/ALink.vue';
         .project__name {
           margin-top:22px;
           width: 305px;
-          height: 100px;
           font-family: 'DM Serif Display';
           text-transform: capitalize;
           font-size: 25px;

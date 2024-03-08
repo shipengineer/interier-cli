@@ -16,7 +16,7 @@
       padding: 21px;
       border: 1px #e7e7e7 solid;
       border-radius: 62px;
-      &:nth-child(2) {
+      &:hover {
         background-color: var(--achivments-background-color);
         .article__link {
           background-color: #fff;
@@ -59,7 +59,7 @@
         -webkit-box-orient: vertical;
         overflow: hidden;
       }
-      
+
       .article__date {
         position: absolute;
         height: 33px;

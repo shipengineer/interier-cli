@@ -63,9 +63,9 @@ export default{
   .img-container__img {
     border-radius: 45px;
     grid-row: 1;
-    grid-column: 1 / 5;
   }
   .img-container__date {
+    font-family: 'Jost';
     grid-column: 1;
     grid-row: 2;
   }
@@ -76,8 +76,10 @@ export default{
 }
 .list {
   counter-reset: lis;
+  
 
   .list__element {
+    margin-top: 24px;
     font-family: 'Jost';
     width: 95%;
     position: relative;

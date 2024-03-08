@@ -11,9 +11,14 @@
             <h3 class="head__description">Home / Blog</h3>
         </div>
         </div>
-        <div class="palette">
-          <ProjectComponent v-for="project,index in projects" :is-time="false" :project="project" :key="index"/>
-
+        <div class= "filter">
+          <span class="filter__item">Bathroom</span>
+          <span class="filter__item">Bed Room</span>
+          <span class="filter__item">Kitchan</span>
+          <span class="filter__item">Living Area</span>
+        </div>
+        <div v-if="PROJECTS" class="palette">
+          <ProjectComponent v-for="project,index in PROJECTS" :is-time="false" :project="project" :key="index" />
         </div>
       <FooterComponent/>
     </div>
@@ -30,7 +35,12 @@
     components: {
       HeaderComponent,
       FooterComponent,
-      ProjectComponent
+      ProjectComponent,
+  },
+  data(){
+    return{
+
+    }
   },
   methods:{
   addFilter(e) {
@@ -46,142 +56,56 @@
     },
     
   },
-  computed: {
-    filteredArticles() {
-      if (this.filters.length === 0) {
-        return this.articles;
-      }
-      return this.articles.filter((elem) => {
-        let find = false;
-        this.filters.forEach((tag) => {
-          if (elem.tag.includes(tag)) {
-            find++;
-          }
-        });
-        if (find === this.filters.length) {
-          return true;
-        } else {
-          return false;
-        }
-      });
-    },
+  
+  mounted(){
+    this.$store.dispatch('GET_PROJECTS')
+
   },
-  data(){
-    return{
-      projects: [
-      {
-        id: 0,
-        img: './projects-view/project2-1.png',
-        name: 'Classic bedroom',
-        date: 1735171200,
-        tag: [
-          "kitchen",
-          "bedroom",
-          "building",
-          "architecture",
-          "kitchen design",
-          "bedroom",
-        ],
-      },
-      {
-        id: 1,
-        img: './projects-view/project2-3.png',
-        name: 'classic kithcen',
-        date: 1734825600,
-        tag: [
-          "kitchen",
-          "bedroom",
-          "kitchen design",
-          "bedroom",
-        ],
-      },
-      {
-        id: 2,
-        img: './projects-view/project2-5.png',
-        name: 'classsic office',
-        date: 1735171200,
-        tag: [
-          "architecture",
-          "kitchen",
-          "bedroom",
-          "building",
-          
-        ],
-      },
-      {
-        id: 3,
-        img: './projects-view/project2-7.png',
-        name: 'Classic bedroom',
-        date: 1735084800,
-        tag: [
-          "kitchen",
-          "bedroom",
-          "building",
-          "architecture",
-        ],
-      },
-      {
-        id: 4,
-        img: './projects-view/project2-2.png',
-        name: 'classic kithcen',
-        date: 1734825600,
-        tag: [
-          "architecture",
-          "kitchen",
-          "bedroom",
-          "building",
-          
-        ],
-      },
-      {
-        id: 5,
-        img: './projects-view/project2-4.png',
-        name: 'classsic office',
-        date: 1735084800,
-        tag: ["bedroom",
-          "kitchen",
-          "building",
-          "architecture",
-        ],
-      },{
-        id: 5,
-        img: './projects-view/project2-6.png',
-        name: 'classsic office',
-        date: 1735084800,
-        tag: ["bedroom",
-          "kitchen",
-          "building",
-          "architecture",
-        ],
-      },{
-        id: 5,
-        img: './projects-view/project2-8.png',
-        name: 'classsic office',
-        date: 1735084800,
-        tag: ["bedroom",
-          "kitchen",
-          "building",
-          "architecture",
-        ],
-      },
-    ],
-  }},
+  computed: {
+    PROJECTS(){
+      return this.$store.getters.PROJECTS[0]
+    }
+  },
   }
 
   </script>
   <style lang="scss" scoped>
+  .filter{
+    margin-inline:auto ;
+    border: #CDA274 solid 1px;
+    border-radius: 18px;
+    width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+    text-align: center;
+    margin-top: 200px;
+    .filter__item{
+      padding: 26px 66px;
+      &:hover{
+        background-color: #CDA274;
+        border-radius: 18px;
+        cursor: pointer;
+      }
+    }
+  }
   
+  .projects{
+   
+    margin-inline: auto;
+  }
   @import url('@/assets/scss-modules/_head.scss');
   @import url('@/assets/scss-modules/articles.scss');
   @import url('@/assets/scss-modules/_bookmarks.scss');
  .palette{
   width: 1200px;
   margin-inline: auto;
- display: flex;
- flex-direction: column;;
-  height: 3200px;
+  height: fit-content;
   flex-wrap: wrap;
-  gap: 35px;
+  margin-top: 61px;
+  gap: 30px;
+  row-gap: 35px;
+  column-count: 2;
  }
   </style>
   
