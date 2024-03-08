@@ -28,17 +28,21 @@ import ALink from './UI/ALink.vue';
       </script>
       <style lang="scss" scoped>
       .project {
+        break-inside: avoid;
         position:relative;
       box-sizing: border-box;
-        min-height:610px;
+        min-height:600px;
         max-height:950px;
         &:hover {
           background-color: var(--achivments-background-color);
+         
           .project__link {
             background-color: #fff;
           }
         }
-      
+        a{
+          bottom: 20px;
+        }
         .project__tag {
           
           width: 118px;

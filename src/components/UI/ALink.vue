@@ -1,5 +1,5 @@
 <template>
-<router-link :to="link" class="link">
+<a  class="link">
         <svg
           width="9"
           height="16"
@@ -15,7 +15,7 @@
             stroke-linejoin="round"
           />
         </svg>
-      </router-link>
+      </a>
 </template>
 <script>
 export default {
