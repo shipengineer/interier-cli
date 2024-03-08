@@ -11,11 +11,11 @@
             <h3 class="head__description">Home / Blog</h3>
         </div>
         </div>
-        <div class= "filter">
-          <span class="filter__item">Bathroom</span>
-          <span class="filter__item">Bed Room</span>
-          <span class="filter__item">Kitchan</span>
-          <span class="filter__item">Living Area</span>
+        <div   class= "filter">
+          <span  @click="addFilter" class="filter__item">bathroom</span>
+          <span  @click="addFilter" class="filter__item">bed room</span>
+          <span  @click="addFilter" class="filter__item">kitchen</span>
+          <span  @click="addFilter" class="filter__item">architecture</span>
         </div>
         <div v-if="PROJECTS" class="palette">
           <ProjectComponent v-for="project,index in PROJECTS" :is-time="false" :project="project" :key="index" />
@@ -39,11 +39,12 @@
   },
   data(){
     return{
-
+      filters:[]
     }
   },
   methods:{
   addFilter(e) {
+   
       if (this.filters.includes(e.target.textContent)) {
         this.filters = this.filters.filter(
           (elem) => elem != e.target.textContent
@@ -63,10 +64,26 @@
   },
   computed: {
     PROJECTS(){
-      return this.$store.getters.PROJECTS[0]
-    }
+      const middleware = this.$store.getters.PROJECTS[0];
+      if (this.filters.length === 0) {
+        return middleware;
+      }
+      return middleware.filter((elem) => {
+        let find = 0;
+        this.filters.forEach((tag) => {
+          if (elem.tag.includes(tag)) {
+            find++;
+          }
+        });
+        if (find === this.filters.length) {
+          return true;
+        } else {
+          return false;
+        }
+      });
   },
   }
+}
 
   </script>
   <style lang="scss" scoped>
@@ -81,8 +98,9 @@
     text-align: center;
     margin-top: 200px;
     .filter__item{
+      text-transform: capitalize;
       padding: 26px 66px;
-      &:hover{
+      &:hover, &.selected{
         background-color: #CDA274;
         border-radius: 18px;
         cursor: pointer;
@@ -100,12 +118,14 @@
  .palette{
   width: 1200px;
   margin-inline: auto;
-  height: fit-content;
+  
   flex-wrap: wrap;
   margin-top: 61px;
   gap: 30px;
   row-gap: 35px;
   column-count: 2;
+  
+
  }
   </style>
   
