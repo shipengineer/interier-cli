@@ -6,6 +6,7 @@ import ArticleView from '../views/ArticleView.vue';
 import MarketView from '../views/MarketView.vue';
 import ProjectsView from '../views/ProjectsView.vue';
 import BigProjectView from '@/views/BigProjectView.vue';
+import Error404 from '@/views/Error404.vue';
 Vue.use(VueRouter);
 
 const routes = [
@@ -30,6 +31,11 @@ const routes = [
     path: '/projectDetails',
     name: 'bigProject',
     component: BigProjectView,
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'error404',
+    component: Error404,
   },
 ];
 
